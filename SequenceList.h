@@ -130,6 +130,7 @@ Status interactiveMenu4StaticSqList(){
 
         switch (choice) {
             case 1:
+                system("cls");
                 if (L.length >= MAXSIZE) {
                     printf("当前顺序表已满！\n");
                 } else {
@@ -138,43 +139,54 @@ Status interactiveMenu4StaticSqList(){
                     printf("请输入要插入的位置：");
                     scanf("%d", &position);
                     if (ListInsert(L, position, value) == OK) {
+                        system("cls");
                         printf("插入成功！\n");
                     } else {
+                        system("cls");
                         printf("插入失败！\n");
                     }
                 }
                 break;
             case 2:
+                system("cls");
                 BatchListInsert(L);
+                system("cls");
                 break;
             case 3:
+                system("cls");
                 if (L.length == 0) {
                     printf("当前顺序表为空！\n");
                 } else {
                     printf("请输入要删除元素的位置：");
                     scanf("%d", &position);
                     if (ListDelete(L, position, value) == OK) {
+                        system("cls");
                         printf("删除成功！删除的元素为：%d\n", value);
                     } else {
+                        system("cls");
                         printf("删除失败！\n");
                     }
                 }
                 break;
             case 4:
+                system("cls");
                 if (L.length == 0) {
                     printf("当前顺序表为空！\n");
                 } else {
                     printf("请输入要查找的位置：");
                     scanf("%d", &position);
                     if (position < 1 || position > L.length) {
+                        system("cls");
                         printf("位置不合法！\n");
                     } else {
                         value = GetElem(L, position);
+                        system("cls");
                         printf("位置 %d 的元素为：%d\n", position, value);
                     }
                 }
                 break;
             case 5:
+                system("cls");
                 if (L.length == 0) {
                     printf("当前顺序表为空！\n");
                 } else {
@@ -182,13 +194,16 @@ Status interactiveMenu4StaticSqList(){
                     scanf("%d", &value);
                     position = LocateElem(L, value);
                     if (position == 0) {
+                        system("cls");
                         printf("未找到元素 %d！\n", value);
                     } else {
+                        system("cls");
                         printf("元素 %d 的位置为：%d\n", value, position);
                     }
                 }
                 break;
             case 6:
+                system("cls");
                 printf("当前顺序表内容如下：\n");
                 printList(L);
                 break;
@@ -196,6 +211,7 @@ Status interactiveMenu4StaticSqList(){
                 printf("程序已退出！\n");
                 return 0;
             default:
+                system("cls");
                 printf("无效的操作！\n");
                 break;
         }
@@ -348,6 +364,7 @@ Status interactiveMenu4DynamicSqList(){
 
         switch (choice) {
             case 1:
+                system("cls");
                 if (L.length >= MAXSIZE) {
                     printf("当前顺序表已满！\n");
                 } else {
@@ -356,43 +373,53 @@ Status interactiveMenu4DynamicSqList(){
                     printf("请输入要插入的位置：");
                     scanf("%d", &position);
                     if (ListInsert(L, position, value) == OK) {
+                        system("cls");
                         printf("插入成功！\n");
                     } else {
+                        system("cls");
                         printf("插入失败！\n");
                     }
                 }
                 break;
             case 2:
+                system("cls");
                 BatchListInsert(L);
                 break;
             case 3:
+                system("cls");
                 if (L.length == 0) {
                     printf("当前顺序表为空！\n");
                 } else {
                     printf("请输入要删除元素的位置：");
                     scanf("%d", &position);
                     if (ListDelete(L, position, value) == OK) {
+                        system("cls");
                         printf("删除成功！删除的元素为：%d\n", value);
                     } else {
+                        system("cls");
                         printf("删除失败！\n");
                     }
                 }
                 break;
             case 4:
+                system("cls");
                 if (L.length == 0) {
                     printf("当前顺序表为空！\n");
                 } else {
                     printf("请输入要查找的位置：");
                     scanf("%d", &position);
                     if (position < 1 || position > L.length) {
+                        system("cls");
                         printf("位置不合法！\n");
                     } else {
                         value = GetElem(L, position);
+                        system("cls");
                         printf("位置 %d 的元素为：%d\n", position, value);
                     }
                 }
                 break;
             case 5:
+                system("cls");
                 if (L.length == 0) {
                     printf("当前顺序表为空！\n");
                 } else {
@@ -400,24 +427,30 @@ Status interactiveMenu4DynamicSqList(){
                     scanf("%d", &value);
                     position = LocateElem(L, value);
                     if (position == 0) {
+                        system("cls");
                         printf("未找到元素 %d！\n", value);
                     } else {
+                        system("cls");
                         printf("元素 %d 的位置为：%d\n", value, position);
                     }
                 }
                 break;
             case 6:
+                system("cls");
                 printf("请输入需要扩充的长度：");
                 int increaseLength;
                 scanf("%d", &increaseLength);
                 IncreaseSize(L, increaseLength);
+                system("cls");
                 printf("表长成功增加%d\n",increaseLength);
                 break;
             case 7:
+                system("cls");
                 printf("当前顺序表内容如下：\n");
                 printList(L);
                 break;
             case 8:
+                system("cls");
                 printf("当前表的最大长度如下：\n");
                 printMaxSize(L);
                 break;
@@ -425,6 +458,7 @@ Status interactiveMenu4DynamicSqList(){
                 printf("程序已退出！\n");
                 return 0;
             default:
+                system("cls");
                 printf("无效的操作！\n");
                 break;
         }
