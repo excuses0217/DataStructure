@@ -4,10 +4,10 @@
 int main() {
     system("chcp 65001");
 
-//    interactiveMenu4StaticSqList();
-//    interactiveMenu4DynamicSqList();
+//    InteractiveMenu4StaticSqList();
+//    InteractiveMenu4DynamicSqList();
 
-    interactiveMenu4LinkListWithHead();
+    InteractiveMenu4LinkListWithHead();
 
     return 0;
 }

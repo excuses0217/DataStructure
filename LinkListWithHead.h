@@ -1,12 +1,9 @@
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "modernize-use-bool-literals"
-#pragma ide diagnostic ignored "modernize-use-nullptr"
 #ifndef DATASTRUCTURE_LINKLISTWITHHEAD_H
 #define DATASTRUCTURE_LINKLISTWITHHEAD_H
 
 #include "GlobalDefine.h"
 
-// -------------------带头节点的单链表-------------------
+// -------------------带头结点的单链表-------------------
 
 typedef struct LNode {
     ElemType data;
@@ -14,21 +11,20 @@ typedef struct LNode {
 } LNode, *LinkList;
 
 /**
- * 初始化带头节点的单链表
+ * 初始化带头结点的单链表
  * @param L 单链表头指针
  * @return 初始化成功返回OK，否则返回ERROR
  */
 Status InitList(LinkList &L) {
     L = (LinkList) malloc(sizeof(LNode));
-    if (L == NULL) {
+    if (L == NULL)
         return ERROR;
-    }
     L->next = NULL;
     return OK;
 }
 
 /**
- * 求带头节点的单链表长度
+ * 求带头结点的单链表长度
  * @param L 单链表头指针
  * @return 单链表长度
  */
@@ -43,10 +39,10 @@ int Length(LinkList L) {
 }
 
 /**
- * 获取指定位置的节点
+ * 获取指定位置的结点
  * @param L 单链表头指针
  * @param i 指定位置
- * @return 指定位置的节点指针，如果位置非法则返回NULL
+ * @return 指定位置的结点指针，如果位置非法则返回NULL
  */
 LNode *GetElem(LinkList L, int i) {
     if (i < 0)
@@ -60,7 +56,7 @@ LNode *GetElem(LinkList L, int i) {
             return p;
     }*/
 //----while 方法实现----
-    int j = 0;// 当前 p 指向第 j 个节点
+    int j = 0;// 当前 p 指向第 j 个结点
     while (p != NULL && j < i) {
         p = p->next;
         j++;
@@ -69,10 +65,10 @@ LNode *GetElem(LinkList L, int i) {
 }
 
 /**
- * 按值查找节点
+ * 按值查找结点
  * @param L 单链表头指针
  * @param e 待查找的元素值
- * @return 找到数据域等于e的节点指针，如果找不到则返回NULL
+ * @return 找到数据域等于e的结点指针，如果找不到则返回NULL
  */
 LNode *LocateNode(LinkList L, ElemType e) {
     LNode *p = L->next;
@@ -83,8 +79,8 @@ LNode *LocateNode(LinkList L, ElemType e) {
 }
 
 /**
- * 在指定节点之前插入元素
- * @param p 指定节点的指针
+ * 在指定结点之前插入元素
+ * @param p 指定结点的指针
  * @param e 待插入的元素值
  * @return 插入成功返回OK，否则返回ERROR
  */
@@ -102,9 +98,9 @@ Status InsertPriorNode(LNode *p, ElemType e) {
 }
 
 /**
- * 在指定节点之前插入节点
- * @param p 指定节点的指针
- * @param s 待插入的节点指针
+ * 在指定结点之前插入结点
+ * @param p 指定结点的指针
+ * @param s 待插入的结点指针
  * @return 插入成功返回OK，否则返回ERROR
  */
 Status InsertPriorNode(LNode *p, LNode *s) {
@@ -119,8 +115,8 @@ Status InsertPriorNode(LNode *p, LNode *s) {
 }
 
 /**
- * 在指定节点之后插入元素
- * @param p 指定节点的指针
+ * 在指定结点之后插入元素
+ * @param p 指定结点的指针
  * @param e 待插入的元素值
  * @return 插入成功返回OK，否则返回ERROR
  */
@@ -137,9 +133,9 @@ Status InsertNextNode(LNode *p, ElemType e) {
 }
 
 /**
- * 在指定节点之后插入节点
- * @param p 指定节点的指针
- * @param s 待插入的节点指针
+ * 在指定结点之后插入结点
+ * @param p 指定结点的指针
+ * @param s 待插入的结点指针
  * @return 插入成功返回OK，否则返回ERROR
  */
 Status InsertNextNode(LNode *p, LNode *s) {
@@ -151,7 +147,7 @@ Status InsertNextNode(LNode *p, LNode *s) {
 }
 
 /**
- * 删除指定位置节点
+ * 删除指定位置结点
  * @param L 单链表头指针
  * @param i 指定位置
  * @param e 用于返回被删除的元素值
@@ -162,7 +158,7 @@ Status ListDelete(LinkList &L, int i, ElemType &e) {
         return ERROR;
     LNode *p = GetElem(L, i - 1);
     if (p == NULL || p->next == NULL)
-        return ERROR;// i 值不合法或者找不到要删除的节点（没有第 i 个节点）
+        return ERROR;// i 值不合法或者找不到要删除的结点（没有第 i 个结点）
     LNode *q = p->next;
     e = q->data;
     p->next = q->next;
@@ -171,8 +167,8 @@ Status ListDelete(LinkList &L, int i, ElemType &e) {
 }
 
 /**
- * 删除指定节点
- * @param p 指定节点的指针
+ * 使用交换值的方法，删除指定结点（不能删除最后一个结点）
+ * @param p 指定结点的指针
  * @return 删除成功返回OK，否则返回ERROR
  */
 Status DeleteNode(LNode *p) {
@@ -213,7 +209,7 @@ Status ListInsert(LinkList &L, int i, ElemType e) {
 }
 
 /**
- * 尾插法建立带头节点的单链表
+ * 尾插法建立带头结点的单链表
  * @param L 单链表头指针
  * @return 建立的单链表头指针
  */
@@ -223,7 +219,7 @@ LinkList List_TailInsert(LinkList &L) {
     while (1) {
         printf("请输入要插入的值：");
 //        scanf("%d", &x);
-        while (1)if (checkScanf(x) == 1)break;
+        while (1)if (CheckScanf(x) == 1)break;
         if (x == 0)break;             // 输入-1表示结束输入
         s = (LNode *) malloc(sizeof(LNode));
         s->data = x;
@@ -235,7 +231,7 @@ LinkList List_TailInsert(LinkList &L) {
 }
 
 /**
- * 头插法建立带头节点的单链表
+ * 头插法建立带头结点的单链表
  * @param L 单链表头指针
  * @return 建立的单链表头指针
  */
@@ -245,7 +241,7 @@ LinkList List_HeadInsert(LinkList &L) {
     while (1) {
         printf("请输入要插入的元素（输入0表示结束）：\n");
 //        scanf("%d", &x);
-        while (1)if (checkScanf(x) == 1)break;
+        while (1)if (CheckScanf(x) == 1)break;
         if (x == 0)break;             // 输入0表示结束输入
         s = (LNode *) malloc(sizeof(LNode));
         s->data = x;
@@ -256,10 +252,10 @@ LinkList List_HeadInsert(LinkList &L) {
 }
 
 /**
- * 打印带头节点的单链表
+ * 打印带头结点的单链表
  * @param L 单链表头指针
  */
-void printList(LinkList L) {
+void PrintList(LinkList L) {
     LNode *p;
     p = L->next;
     int count = 1;
@@ -271,7 +267,7 @@ void printList(LinkList L) {
     printf("\n");
 }
 
-Status interactiveMenu4LinkListWithHead() {
+Status InteractiveMenu4LinkListWithHead() {
     LinkList L;
     InitList(L); // 初始化单链表
 
@@ -280,21 +276,22 @@ Status interactiveMenu4LinkListWithHead() {
     ElemType value;
     int position;
 
-    printf("-------------测试带头节点的单链表-------------\n");
+    printf("-------------测试带头结点的单链表-------------\n");
 
     while (1) {
         printf("请输入操作：\n"
                "1：尾插法建立单链表\n"
                "2：头尾插法建立单链表\n"
-               "3：在指定位置插入元素\n"
-               "4：按位查找\n"
-               "5：按值查找\n"
-               "6：打印目前单链表\n"
-               "7：获取当前单链表长度\n"
+               "3：在指定位置插入结点\n"
+               "4：删除指定位置结点\n"
+               "5：按位查找\n"
+               "6：按值查找\n"
+               "7：打印目前单链表\n"
+               "8：获取当前单链表长度\n"
                "0：退出程序\n");
 
 //        scanf("%d", &choice);
-        checkScanf(choice);
+        CheckScanf(choice);
 
         switch (choice) {
             case 1:
@@ -311,10 +308,10 @@ Status interactiveMenu4LinkListWithHead() {
                 system("cls");
                 printf("请输入要插入的值：");
 //                scanf("%d", &value);
-                while (1)if (checkScanf(value) == 1)break;
+                while (1)if (CheckScanf(value) == 1)break;
                 printf("请输入要插入的位置：");
 //                scanf("%d", &position);
-                while (1)if (checkScanf(position) == 1)break;
+                while (1)if (CheckScanf(position) == 1)break;
                 if (ListInsert(L, position, value) == OK) {
                     system("cls");
                     printf("插入成功！\n");
@@ -325,9 +322,17 @@ Status interactiveMenu4LinkListWithHead() {
                 break;
             case 4:
                 system("cls");
+                printf("请输入要删除元素的位置：");
+//                scanf("%d", &position);
+                while (1)if (CheckScanf(position) == 1)break;
+                DeleteNode(GetElem(L, position));
+                system("cls");
+                break;
+            case 5:
+                system("cls");
                 printf("请输入要查找的位置：");
 //                scanf("%d", &position);
-                while (1)if (checkScanf(position) == 1)break;
+                while (1)if (CheckScanf(position) == 1)break;
                 if (position < 1 || position > Length(L)) {
                     system("cls");
                     printf("位置不合法！\n");
@@ -337,14 +342,14 @@ Status interactiveMenu4LinkListWithHead() {
                     printf("位置 %d 的元素为：%d\n", position, lNode->data);
                 }
                 break;
-            case 5:
+            case 6:
                 system("cls");
                 if (L->next == NULL) {
                     printf("当前顺序表为空！\n");
                 } else {
                     printf("请输入要查找的值：");
 //                    scanf("%d", &value);
-                    while (1)if (checkScanf(value) == 1)break;
+                    while (1)if (CheckScanf(value) == 1)break;
 
                     position = 0;
                     lNode = L->next;
@@ -362,12 +367,12 @@ Status interactiveMenu4LinkListWithHead() {
                     }
                 }
                 break;
-            case 6:
+            case 7:
                 system("cls");
                 printf("当前单链表内容如下：\n");
-                printList(L);
+                PrintList(L);
                 break;
-            case 7:
+            case 8:
                 system("cls");
                 printf("当前单链表长度为：");
                 printf("%d\n", Length(L));

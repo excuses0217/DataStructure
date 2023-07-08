@@ -61,7 +61,7 @@ Status BatchListInsert(SqList &L) {
     printf("请输入要插入的元素（输入0表示结束）：\n");
     while (1) {
 //        scanf("%d", &value);
-        while (1)if (checkScanf(value) == 1)break;
+        while (1)if (CheckScanf(value) == 1)break;
         if (value == 0) {
             break;
         }
@@ -126,7 +126,7 @@ int LocateElem(SqList L, ElemType e) {
  * 打印顺序表中的元素
  * @param L 顺序表对象
  */
-void printList(SqList L) {
+void PrintList(SqList L) {
     if (L.length == 0) {
         printf("This List is empty!\n");
     } else {
@@ -141,7 +141,7 @@ void printList(SqList L) {
  * 打印顺序表中的所有元素(包括未赋值的)以及最大长度
  * @param L 顺序表对象
  */
-void printAllList(SqList L) {
+void PrintAllList(SqList L) {
     printf("length=%d\n", L.length);
     for (int i = 0; i < MAXSIZE; i++)
         printf("[%d]:data[%d]=%d\n", i + 1, i, L.data[i]);
@@ -152,7 +152,7 @@ void printAllList(SqList L) {
  * 静态顺序表的交互式菜单
  * @return 退出程序返回0
  */
-Status interactiveMenu4StaticSqList() {
+Status InteractiveMenu4StaticSqList() {
     SqList L;
     InitSqList(L); // 初始化静态顺序表
 
@@ -173,7 +173,7 @@ Status interactiveMenu4StaticSqList() {
                "0：退出程序\n");
 
 //        scanf("%d", &choice);
-        checkScanf(choice);
+        CheckScanf(choice);
 
         switch (choice) {
             case 1:
@@ -183,10 +183,10 @@ Status interactiveMenu4StaticSqList() {
                 } else {
                     printf("请输入要插入的值：");
 //                    scanf("%d", &value);
-                    while (1)if (checkScanf(value) == 1)break;
+                    while (1)if (CheckScanf(value) == 1)break;
                     printf("请输入要插入的位置：");
 //                    scanf("%d", &position);
-                    while (1)if (checkScanf(position) == 1)break;
+                    while (1)if (CheckScanf(position) == 1)break;
                     if (ListInsert(L, position, value) == OK) {
                         system("cls");
                         printf("插入成功！\n");
@@ -208,7 +208,7 @@ Status interactiveMenu4StaticSqList() {
                 } else {
                     printf("请输入要删除元素的位置：");
 //                    scanf("%d", &position);
-                    while (1)if (checkScanf(position) == 1)break;
+                    while (1)if (CheckScanf(position) == 1)break;
                     if (ListDelete(L, position, value) == OK) {
                         system("cls");
                         printf("删除成功！删除的元素为：%d\n", value);
@@ -225,7 +225,7 @@ Status interactiveMenu4StaticSqList() {
                 } else {
                     printf("请输入要查找的位置：");
 //                    scanf("%d", &position);
-                    while (1)if (checkScanf(position) == 1)break;
+                    while (1)if (CheckScanf(position) == 1)break;
                     if (position < 1 || position > L.length) {
                         system("cls");
                         printf("位置不合法！\n");
@@ -243,7 +243,7 @@ Status interactiveMenu4StaticSqList() {
                 } else {
                     printf("请输入要查找的值：");
 //                    scanf("%d", &value);
-                    while (1)if (checkScanf(value) == 1)break;
+                    while (1)if (CheckScanf(value) == 1)break;
                     position = LocateElem(L, value);
                     if (position == 0) {
                         system("cls");
@@ -257,7 +257,7 @@ Status interactiveMenu4StaticSqList() {
             case 6:
                 system("cls");
                 printf("当前顺序表内容如下：\n");
-                printList(L);
+                PrintList(L);
                 break;
             case 0:
                 printf("程序已退出！\n");
@@ -349,7 +349,7 @@ Status BatchListInsert(SeqList &L) {
     printf("请输入要插入的元素（输入0表示结束）：\n");
     while (1) {
 //        scanf("%d", &value);
-        while (1)if (checkScanf(value) == 1)break;
+        while (1)if (CheckScanf(value) == 1)break;
         if (value == 0) {
             break;
         }
@@ -414,7 +414,7 @@ int LocateElem(SeqList L, ElemType e) {
  * 输出动态顺序表中的元素
  * @param L 顺序表对象
  */
-void printList(SeqList L) {
+void PrintList(SeqList L) {
     if (L.length == 0) {
         printf("This List is empty!\n");
     } else {
@@ -428,8 +428,8 @@ void printList(SeqList L) {
  * 输出动态顺序表的最大长度
  * @param L 顺序表对象
  */
-void printMaxSize(SeqList L) {
-    printf("MaxSize=%d\n", L.MaxSize);
+void PrintMaxSize(SeqList L) {
+    printf("最大长度：%d\n", L.MaxSize);
 }
 
 /**
@@ -438,7 +438,7 @@ void printMaxSize(SeqList L) {
  */
 Status interactiveMenu4DynamicSqList() {
     SeqList L;
-    InitSeqList(L); // 初始化静态顺序表
+    InitSeqList(L); // 初始化动态顺序表
 
     int choice;
     ElemType value;
@@ -459,20 +459,20 @@ Status interactiveMenu4DynamicSqList() {
                "0：退出程序\n");
 
 //        scanf("%d", &choice);
-        checkScanf(choice);
+        CheckScanf(choice);
 
         switch (choice) {
             case 1:
                 system("cls");
-                if (L.length >= MAXSIZE) {
+                if (L.length >= L.MaxSize) {
                     printf("当前顺序表已满！\n");
                 } else {
                     printf("请输入要插入的值：");
 //                    scanf("%d", &value);
-                    while (1)if (checkScanf(value) == 1)break;
+                    while (1)if (CheckScanf(value) == 1)break;
                     printf("请输入要插入的位置：");
 //                    scanf("%d", &position);
-                    while (1)if (checkScanf(position) == 1)break;
+                    while (1)if (CheckScanf(position) == 1)break;
                     if (ListInsert(L, position, value) == OK) {
                         system("cls");
                         printf("插入成功！\n");
@@ -493,7 +493,7 @@ Status interactiveMenu4DynamicSqList() {
                 } else {
                     printf("请输入要删除元素的位置：");
 //                    scanf("%d", &position);
-                    while (1)if (checkScanf(position) == 1)break;
+                    while (1)if (CheckScanf(position) == 1)break;
                     if (ListDelete(L, position, value) == OK) {
                         system("cls");
                         printf("删除成功！删除的元素为：%d\n", value);
@@ -510,7 +510,7 @@ Status interactiveMenu4DynamicSqList() {
                 } else {
                     printf("请输入要查找的位置：");
 //                    scanf("%d", &position);
-                    while (1)if (checkScanf(position) == 1)break;
+                    while (1)if (CheckScanf(position) == 1)break;
                     if (position < 1 || position > L.length) {
                         system("cls");
                         printf("位置不合法！\n");
@@ -528,7 +528,7 @@ Status interactiveMenu4DynamicSqList() {
                 } else {
                     printf("请输入要查找的值：");
 //                    scanf("%d", &value);
-                    while (1)if (checkScanf(value) == 1)break;
+                    while (1)if (CheckScanf(value) == 1)break;
                     position = LocateElem(L, value);
                     if (position == 0) {
                         system("cls");
@@ -551,12 +551,12 @@ Status interactiveMenu4DynamicSqList() {
             case 7:
                 system("cls");
                 printf("当前顺序表内容如下：\n");
-                printList(L);
+                PrintList(L);
                 break;
             case 8:
                 system("cls");
                 printf("当前表的最大长度如下：\n");
-                printMaxSize(L);
+                PrintMaxSize(L);
                 break;
             case 0:
                 printf("程序已退出！\n");
