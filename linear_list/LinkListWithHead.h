@@ -28,17 +28,17 @@ Status InitList(LinkList &L) {
  * @param L 单链表头指针
  * @return 销毁成功返回OK，否则返回ERROR
  */
-Status DestroyList(LinkList *L) {
+Status DestroyList(LinkList &L) {
     // 链表为空，无法销毁
-    if (*L == NULL)
+    if (L == NULL)
         return ERROR;
-    LNode *p = *L, *q;
+    LNode *p = L, *q;
     while (p != NULL) {
         q = p;
         p = p->next;
         free(q);
     }
-    *L = NULL;
+    L = NULL;
     return OK;
 }
 
@@ -275,15 +275,18 @@ LinkList List_HeadInsert(LinkList &L) {
  * @param L 单链表头指针
  */
 void PrintList(LinkList L) {
-    LNode *p;
-    p = L->next;
-    int count = 1;
-    while (p != NULL) {
-        printf("[%d]:%d  ", count, p->data);
-        p = p->next;
-        count++;
+    if (L->next == NULL)
+        printf("This LinkList is empty!\n");
+    else {
+        LNode *p = L->next;
+        int count = 1;
+        while (p != NULL) {
+            printf("[%d]:%d  ", count, p->data);
+            p = p->next;
+            count++;
+        }
+        printf("\n");
     }
-    printf("\n");
 }
 
 Status InteractiveMenu4LinkListWithHead() {
