@@ -1,7 +1,7 @@
 #ifndef DATASTRUCTURE_LINKLISTWITHHEAD_H
 #define DATASTRUCTURE_LINKLISTWITHHEAD_H
 
-#include "GlobalDefine.h"
+#include "../GlobalDefine.h"
 
 // -------------------带头结点的单链表-------------------
 

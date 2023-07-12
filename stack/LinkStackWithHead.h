@@ -1,7 +1,7 @@
 #ifndef DATASTRUCTURE_LINKSTACKWITHHEAD_H
 #define DATASTRUCTURE_LINKSTACKWITHHEAD_H
 
-#include "GlobalDefine.h"
+#include "../GlobalDefine.h"
 
 // -------------------带头结点的链栈-------------------
 

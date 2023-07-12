@@ -1,7 +1,7 @@
 #ifndef DATASTRUCTURE_CIRCLELINKLIST_H
 #define DATASTRUCTURE_CIRCLELINKLIST_H
 
-#include "GlobalDefine.h"
+#include "../GlobalDefine.h"
 
 // -------------------带头结点的循环单链表-------------------
 

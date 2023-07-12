@@ -1,7 +1,7 @@
 #ifndef DATASTRUCTURE_SEQUENCESTACK_H
 #define DATASTRUCTURE_SEQUENCESTACK_H
 
-#include "GlobalDefine.h"
+#include "../GlobalDefine.h"
 
 // -------------------顺序栈-------------------
 

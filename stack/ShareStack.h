@@ -1,7 +1,7 @@
 #ifndef DATASTRUCTURE_SHARESTACK_H
 #define DATASTRUCTURE_SHARESTACK_H
 
-#include "GlobalDefine.h"
+#include "../GlobalDefine.h"
 
 // -------------------共享栈-------------------
 

@@ -1,7 +1,7 @@
 #ifndef DATASTRUCTURE_DOUBLELINKLIST_H
 #define DATASTRUCTURE_DOUBLELINKLIST_H
 
-#include "GlobalDefine.h"
+#include "../GlobalDefine.h"
 
 // -------------------带头结点的双链表-------------------
 

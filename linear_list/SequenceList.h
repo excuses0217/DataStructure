@@ -1,7 +1,7 @@
 #ifndef DATASTRUCTURE_SEQUENCESTACK_H
 #define DATASTRUCTURE_SEQUENCELIST_H
 
-#include "GlobalDefine.h"
+#include "../GlobalDefine.h"
 
 // -------------------静态实现顺序表-------------------
 
