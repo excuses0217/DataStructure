@@ -12,7 +12,7 @@ int main() {
 
 //    testSharedStack();
 //    InteractiveMenu4SqStack();
-    InteractiveMenu4LinkStack();
+    InteractiveMenu4LinkStackWithHead();
 
     return 0;
 }

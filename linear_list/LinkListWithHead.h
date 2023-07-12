@@ -310,6 +310,7 @@ Status InteractiveMenu4LinkListWithHead() {
                "6：按值查找\n"
                "7：打印目前单链表\n"
                "8：获取当前单链表长度\n"
+               "9：销毁单链表(并重新初始化)\n"
                "0：退出程序\n");
 
 //        scanf("%d", &choice);
@@ -398,6 +399,16 @@ Status InteractiveMenu4LinkListWithHead() {
                 system("cls");
                 printf("当前单链表长度为：");
                 printf("%d\n", Length(L));
+                break;
+            case 9:
+                system("cls");
+                if (DestroyList(L) == OK) {
+                    printf("链表销毁成功！\n");
+                    // 重新初始化链表
+                    InitList(L);
+                } else {
+                    printf("链表销毁失败！\n");
+                }
                 break;
             case 0:
                 printf("程序已退出！\n");

@@ -138,7 +138,7 @@ void PrintList(LinkStack S) {
  * 链栈的交互式菜单
  * @return 退出程序返回0
  */
-Status InteractiveMenu4LinkStack() {
+Status InteractiveMenu4LinkStackWithHead() {
     LinkStack S;
     InitList(S); // 初始化链栈
 
