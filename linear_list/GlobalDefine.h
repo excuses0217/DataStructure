@@ -4,14 +4,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define TRUE 1
-#define FALSE 0
 #define OK 0
 #define ERROR (-1)
 #define OVERFLOW (-2)
 
 typedef int Status;
 typedef int ElemType;
+
+#define MAXSIZE 10
 
 /**
  * 检查输入的参数是否有效

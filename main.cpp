@@ -1,5 +1,6 @@
-//#include "SequenceList.h"
-#include "LinkListWithHead.h"
+//#include "linear_list/SequenceList.h"
+//#include "linear_list/LinkListWithHead.h"
+#include "stack/SequenceStack.h"
 
 int main() {
     system("chcp 65001");
@@ -7,7 +8,10 @@ int main() {
 //    InteractiveMenu4StaticSqList();
 //    InteractiveMenu4DynamicSqList();
 
-    InteractiveMenu4LinkListWithHead();
+//    InteractiveMenu4LinkListWithHead();
+
+//    testSharedStack();
+    InteractiveMenu4SqStack();
 
     return 0;
 }

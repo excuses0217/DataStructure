@@ -24,6 +24,25 @@ Status InitList(LinkList &L) {
 }
 
 /**
+ * 销毁链表，释放内存
+ * @param L 单链表头指针
+ * @return 销毁成功返回OK，否则返回ERROR
+ */
+Status DestroyList(LinkList *L) {
+    // 链表为空，无法销毁
+    if (*L == NULL)
+        return ERROR;
+    LNode *p = *L, *q;
+    while (p != NULL) {
+        q = p;
+        p = p->next;
+        free(q);
+    }
+    *L = NULL;
+    return OK;
+}
+
+/**
  * 求带头结点的单链表长度
  * @param L 单链表头指针
  * @return 单链表长度

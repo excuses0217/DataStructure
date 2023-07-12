@@ -1,13 +1,9 @@
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "modernize-use-bool-literals"
-#ifndef DATASTRUCTURE_SEQUENCELIST_H
+#ifndef DATASTRUCTURE_SEQUENCESTACK_H
 #define DATASTRUCTURE_SEQUENCELIST_H
 
 #include "GlobalDefine.h"
 
 // -------------------静态实现顺序表-------------------
-
-#define MAXSIZE 10
 
 typedef struct {
     ElemType data[MAXSIZE];
