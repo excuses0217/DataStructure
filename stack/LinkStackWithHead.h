@@ -147,7 +147,7 @@ Status InteractiveMenu4LinkStackWithHead() {
 
     printf("-------------测试链栈-------------\n");
 
-    while (1) {
+    while (true) {
         printf("请输入操作：\n"
                "1：压栈\n"
                "2：出栈\n"
@@ -164,7 +164,7 @@ Status InteractiveMenu4LinkStackWithHead() {
             case 1:
                 system("cls");
                 printf("请输入要压栈的值：");
-                while (1)if (CheckScanf(value) == 1)break;
+                while (true)if (CheckScanf(value) == 1)break;
                 if (Push(S, value) == OK) {
                     system("cls");
                     printf("压栈成功！\n");

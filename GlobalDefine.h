@@ -11,7 +11,7 @@
 typedef int Status;
 typedef int ElemType;
 
-#define MAXSIZE 10
+#define MAXSIZE 20
 
 /**
  * 检查输入的参数是否有效

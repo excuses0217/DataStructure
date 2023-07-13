@@ -235,10 +235,10 @@ Status ListInsert(LinkList &L, int i, ElemType e) {
 LinkList List_TailInsert(LinkList &L) {
     int x;
     LNode *s, *r = L;   // r 是表尾指针
-    while (1) {
+    while (true) {
         printf("请输入要插入的值：");
 //        scanf("%d", &x);
-        while (1)if (CheckScanf(x) == 1)break;
+        while (true)if (CheckScanf(x) == 1)break;
         if (x == 0)break;             // 输入-1表示结束输入
         s = (LNode *) malloc(sizeof(LNode));
         s->data = x;
@@ -257,10 +257,10 @@ LinkList List_TailInsert(LinkList &L) {
 LinkList List_HeadInsert(LinkList &L) {
     int x;
     LNode *s;
-    while (1) {
+    while (true) {
         printf("请输入要插入的元素（输入0表示结束）：\n");
 //        scanf("%d", &x);
-        while (1)if (CheckScanf(x) == 1)break;
+        while (true)if (CheckScanf(x) == 1)break;
         if (x == 0)break;             // 输入0表示结束输入
         s = (LNode *) malloc(sizeof(LNode));
         s->data = x;
@@ -300,7 +300,7 @@ Status InteractiveMenu4LinkListWithHead() {
 
     printf("-------------测试带头结点的单链表-------------\n");
 
-    while (1) {
+    while (true) {
         printf("请输入操作：\n"
                "1：尾插法建立单链表\n"
                "2：头尾插法建立单链表\n"
@@ -331,10 +331,10 @@ Status InteractiveMenu4LinkListWithHead() {
                 system("cls");
                 printf("请输入要插入的值：");
 //                scanf("%d", &value);
-                while (1)if (CheckScanf(value) == 1)break;
+                while (true)if (CheckScanf(value) == 1)break;
                 printf("请输入要插入的位置：");
 //                scanf("%d", &position);
-                while (1)if (CheckScanf(position) == 1)break;
+                while (true)if (CheckScanf(position) == 1)break;
                 if (ListInsert(L, position, value) == OK) {
                     system("cls");
                     printf("插入成功！\n");
@@ -347,7 +347,7 @@ Status InteractiveMenu4LinkListWithHead() {
                 system("cls");
                 printf("请输入要删除元素的位置：");
 //                scanf("%d", &position);
-                while (1)if (CheckScanf(position) == 1)break;
+                while (true)if (CheckScanf(position) == 1)break;
                 DeleteNode(GetElem(L, position));
                 system("cls");
                 break;
@@ -355,7 +355,7 @@ Status InteractiveMenu4LinkListWithHead() {
                 system("cls");
                 printf("请输入要查找的位置：");
 //                scanf("%d", &position);
-                while (1)if (CheckScanf(position) == 1)break;
+                while (true)if (CheckScanf(position) == 1)break;
                 if (position < 1 || position > Length(L)) {
                     system("cls");
                     printf("位置不合法！\n");
@@ -372,7 +372,7 @@ Status InteractiveMenu4LinkListWithHead() {
                 } else {
                     printf("请输入要查找的值：");
 //                    scanf("%d", &value);
-                    while (1)if (CheckScanf(value) == 1)break;
+                    while (true)if (CheckScanf(value) == 1)break;
 
                     position = 0;
                     lNode = L->next;
