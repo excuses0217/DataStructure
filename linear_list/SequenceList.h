@@ -266,6 +266,7 @@ Status InteractiveMenu4StaticSqList() {
     }
 }
 
+// 从有序顺序表中删除所有其值重复的元素，使表中所以有元素的值均不同
 bool Delete_Same(SqList &L) {
     if (L.length == 0)
         return false;
@@ -278,6 +279,7 @@ bool Delete_Same(SqList &L) {
     return true;
 }
 
+// 从有序顺序表中删除所有其值重复的元素，使表中所以有元素的值均不同
 bool Delete_Same2(SqList &L) {
     if (L.length == 0)
         return false;
@@ -293,6 +295,7 @@ bool Delete_Same2(SqList &L) {
     return true;
 }
 
+// 将两个有序顺序表合并为一个新的有序顺序表，并由函数返回结果顺序表
 bool Merge(SqList &A, SqList &B, SqList &L) {
     InitSqList(L);
 
@@ -310,6 +313,19 @@ bool Merge(SqList &A, SqList &B, SqList &L) {
     while (j < B.length)
         L.data[k++] = B.data[j++];
     L.length = k;
+    return true;
+}
+
+// 将顺序表指定区间逆置
+bool Revers(SqList &L, int left, int right) {
+    if (left < 1 || right > L.length || right <= left)
+        return false;
+    int mid = (left + right) / 2;
+    for (int i = 0; i <= mid - left; i++) {
+        ElemType temp = L.data[left + i - 1];
+        L.data[left + i - 1] = L.data[right - i - 1];
+        L.data[right - i - 1] = temp;
+    }
     return true;
 }
 

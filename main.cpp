@@ -3,7 +3,7 @@
 //#include "stack/LinkStackWithHead.h"
 //#include "queue/SequenceQueue.h"
 
-SqList array2SqList(SqList &L, ElemType data[]) {
+SqList Array2SqList(SqList &L, ElemType data[]) {
     for (int i = 0; data[i] != 0; i++) {
         ListInsert(L, L.length + 1, data[i]);
     }
@@ -21,19 +21,22 @@ int main() {
     SqList L1;
     InitSqList(L1);
     ElemType data1[] = {1, 2, 2, 3, 4, 5, 5, 5, 6, 7,0};
-    array2SqList(L1, data1);
+    Array2SqList(L1, data1);
     PrintList(L1);
 
     SqList L2;
     InitSqList(L2);
     ElemType data2[] = {2, 3, 4, 5, 5, 5, 6, 6, 7, 8,0};
-    array2SqList(L2, data2);
-    PrintList(L2);
+    Array2SqList(L2, data2);
+//    PrintList(L2);
 
 //    Delete_Same2(L1);
-    SqList L;
-    Merge(L1, L2, L);
-    PrintList(L);
+//    SqList L;
+//    Merge(L1, L2, L);
+//    PrintList(L);
+
+    Revers(L1, 2, 6);
+    PrintList(L1);
 
 //    InteractiveMenu4LinkListWithHead();
 
