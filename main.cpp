@@ -3,7 +3,8 @@
 //#include "stack/LinkStackWithHead.h"
 //#include "queue/SequenceQueue.h"
 //#include "queue/LinkQueueWithHead.h"
-#include "stack/InfixToPostfix.h"
+//#include "stack/InfixToPostfix.h"
+#include "string/SString.h"
 
 int main() {
     system("chcp 65001");
@@ -18,6 +19,7 @@ int main() {
 //    InteractiveMenu4SqQueue();
 //    InteractiveMenu4LinkQueue();
 
-    InfixToPostfixMain();
+//    InfixToPostfixMain();
+    text();
     return 0;
 }
