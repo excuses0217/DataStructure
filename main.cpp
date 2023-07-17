@@ -2,8 +2,8 @@
 //#include "linear_list/LinkListWithHead.h"
 //#include "stack/LinkStackWithHead.h"
 //#include "queue/SequenceQueue.h"
-#include "queue/LinkQueueWithHead.h"
-
+//#include "queue/LinkQueueWithHead.h"
+#include "stack/InfixToPostfix.h"
 
 int main() {
     system("chcp 65001");
@@ -16,7 +16,8 @@ int main() {
 //    InteractiveMenu4LinkStackWithHead();
 
 //    InteractiveMenu4SqQueue();
-    InteractiveMenu4LinkQueue();
+//    InteractiveMenu4LinkQueue();
 
+    InfixToPostfixMain();
     return 0;
 }
