@@ -1,22 +1,29 @@
-#ifndef DATASTRUCTURE_SEQUENCEQUEUE_H
-#define DATASTRUCTURE_SEQUENCEQUEUE_H
+#ifndef DATASTRUCTURE_LINKQUEUEWITHHEAD_H
+#define DATASTRUCTURE_LINKQUEUEWITHHEAD_H
 
 #include "../GlobalDefine.h"
 
-// -------------------顺序实现队列(循环队列)-------------------
+// -------------------带头结点的链式队列-------------------
+
+typedef struct LinkNode {
+    ElemType data;
+    LinkNode *next;
+} LinkNode;
 
 typedef struct {
-    ElemType data[MAXSIZE];
-    int front, rear;
-} SqQueue;
+    LinkNode *front, *rear;
+} LinkQueue;
 
 /**
  * 初始化队列
  * @param Q 要初始化的队列
  * @return 初始化成功返回OK，否则返回ERROR
  */
-Status InitQueue(SqQueue &Q) {
-    Q.rear = Q.front = 0;
+Status InitQueue(LinkQueue &Q) {
+    Q.front = Q.rear = (LinkNode *) malloc(sizeof(LinkNode));
+    if (Q.front == NULL || Q.rear == NULL)
+        return ERROR;// 初始化失败
+    Q.front->next = NULL;
     return OK;
 }
 
@@ -25,7 +32,7 @@ Status InitQueue(SqQueue &Q) {
  * @param Q 要判断的队列
  * @return 如果队列为空返回true，否则返回false
  */
-bool QueueEmpty(SqQueue Q) {
+bool QueueEmpty(LinkQueue Q) {
     return Q.rear == Q.front;
 }
 
@@ -35,10 +42,10 @@ bool QueueEmpty(SqQueue Q) {
  * @param e 用于存放获取到的头部元素的变量
  * @return 如果队列为空返回ERROR，否则返回OK
  */
-Status GetHead(SqQueue Q, ElemType &e) {
-    if (Q.rear == Q.front)
+Status GetHead(LinkQueue Q, ElemType &e) {
+    if (QueueEmpty(Q))
         return ERROR;// 队列为空
-    e = Q.data[Q.front];
+    e = Q.front->next->data;
     return OK;
 }
 
@@ -47,8 +54,14 @@ Status GetHead(SqQueue Q, ElemType &e) {
  * @param Q 要获取长度的队列
  * @return 返回队列的长度
  */
-int QueueLength(SqQueue Q) {
-    return (Q.rear - Q.front + MAXSIZE) % MAXSIZE;
+int QueueLength(LinkQueue Q) {
+    int len = 0;
+    LinkNode *p = Q.front;
+    while (p != Q.rear) {
+        p = p->next;
+        len++;
+    }
+    return len;
 }
 
 /**
@@ -57,11 +70,12 @@ int QueueLength(SqQueue Q) {
  * @param e 要插入的元素
  * @return 如果队列已满返回ERROR，否则返回OK
  */
-Status EnQueue(SqQueue &Q, ElemType e) {
-    if ((Q.rear + 1) % MAXSIZE == Q.front)
-        return ERROR;// 队列已满
-    Q.data[Q.rear] = e;
-    Q.rear = (Q.rear + 1) % MAXSIZE;
+Status EnQueue(LinkQueue &Q, ElemType e) {
+    LinkNode *s = (LinkNode *) malloc(sizeof(LinkNode));
+    s->data = e;
+    s->next = NULL;
+    Q.rear->next = s;
+    Q.rear = s;
     return OK;
 }
 
@@ -71,11 +85,15 @@ Status EnQueue(SqQueue &Q, ElemType e) {
  * @param e 用于存放取出的元素的变量
  * @return 如果队列为空返回ERROR，否则返回OK
  */
-Status DeQueue(SqQueue &Q, ElemType &e) {
-    if (Q.rear == Q.front)
+Status DeQueue(LinkQueue &Q, ElemType &e) {
+    if (QueueEmpty(Q))
         return ERROR;// 队列为空
-    e = Q.data[Q.front];
-    Q.front = (Q.front + 1) % MAXSIZE;
+    LinkNode *p = Q.front->next;
+    e = p->data;
+    Q.front->next = p->next;
+    if (Q.rear == p) // 若原队列中只有一个结点，删除后变空
+        Q.rear = Q.front;
+    free(p);
     return OK;
 }
 
@@ -83,31 +101,35 @@ Status DeQueue(SqQueue &Q, ElemType &e) {
  * 打印队列内容
  * @param Q 要打印的队列
  */
-void PrintQueue(SqQueue Q) {
+void PrintQueue(LinkQueue Q) {
     if (QueueEmpty(Q)) {
         printf("队列为空！\n");
         return;
     }
 
     printf("队列内容如下：\n");
-    for (int i = Q.front; i != Q.rear; i = (i + 1) % MAXSIZE) {
-        printf("[%d]:%d ", i + 1, Q.data[i]);
+    LinkNode *p = Q.front->next;
+    int i = 1;
+    while (p != Q.rear) {
+        printf("[%d]:%d ", i, p->data);
+        p = p->next;
+        i++;
     }
     printf("\n");
 }
 
 /**
- * 循环队列的交互式菜单
+ * 链式队列的交互式菜单
  * @return 退出程序返回0
  */
-Status InteractiveMenu4SqQueue() {
-    SqQueue Q;
+Status InteractiveMenu4LinkQueue() {
+    LinkQueue Q;
     InitQueue(Q); // 初始化队列
 
     int choice;
     ElemType value;
 
-    printf("-------------测试循环队列-------------\n");
+    printf("-------------测试链式队列-------------\n");
 
     while (true) {
         printf("请输入操作：\n"
@@ -182,4 +204,4 @@ Status InteractiveMenu4SqQueue() {
     }
 }
 
-#endif //DATASTRUCTURE_SEQUENCEQUEUE_H
+#endif //DATASTRUCTURE_LINKQUEUEWITHHEAD_H

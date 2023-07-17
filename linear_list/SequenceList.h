@@ -628,6 +628,10 @@ Status interactiveMenu4DynamicSqList() {
     }
 }
 
+SqList Array2SqList(SqList &L, ElemType data[]) {
+    for (int i = 0; data[i] != 0; i++) {
+        ListInsert(L, L.length + 1, data[i]);
+    }
+    return L;
+}
 #endif //DATASTRUCTURE_SEQUENCELIST_H
-
-#pragma clang diagnostic pop
