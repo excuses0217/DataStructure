@@ -11,11 +11,11 @@ typedef int Status;
 #define MAXLEN 255
 
 typedef struct {
-    char ch[MAXLEN+1];
+    char ch[MAXLEN + 1];
     int length;
 } SString;
 
-Status StringInit(SString &S){
+Status StringInit(SString &S) {
     S.length = 0;
     return OK;
 }
@@ -23,7 +23,7 @@ Status StringInit(SString &S){
 Status StringAssign(SString &S, char *chars) {
     int i;
     for (i = 0; chars[i] != '\0' && i <= MAXLEN; i++)
-        S.ch[i+1] = chars[i];
+        S.ch[i + 1] = chars[i];
     // If chars is longer than MAXLEN, only the first MAXLEN characters will be copied
     if (i == MAXLEN && chars[i] != '\0')
         return ERROR;
@@ -95,6 +95,7 @@ Status Concat(SString &T, SString S1, SString S2) {
 
     return OK;
 }
+
 /*
  * 朴素模式匹配算法
  * 其基本思想是从主串 S 的第一个字符开始，依次和模式串 T 的字符进行比较，
@@ -117,9 +118,19 @@ int Index_BruteForce(SString S, SString T) {
         return 0;
 }
 
+/*
+ * 下面解释KMP算法修next数组的逻辑：
+1.初始化变量：设置两个指针i和j，其中i指向模式串的当前位置，j表示当前字符前缀的最长相等前缀后缀的长度，即已匹配的字符数目。
+2.首先，将next[1]设置为0，因为next[1]始终为0。
+3.进入循环，遍历整个模式串T：
+    3.1如果j为0，或者当前位置i的字符与前缀的第j个字符相等（即T.ch[i] == T.ch[j]），则将i和j都向后移动一位，并将next[i]设置为j的值。
+    3.2如果当前位置i的字符与前缀的第j个字符不相等，则需要回溯。此时将j更新为next[j]，即回溯到当前字符前缀的最长相等前缀后缀的长度，继续进行比较。
+    3.3这个操作相当于将模式串向右移动一位，但是不需要从头开始，而是从已匹配的前缀的末尾开始。
+    3.4通过不断回溯，直到找到一个相等的前缀或者j变为0，表示无法回溯到更短的相等前缀。
+4.重复步骤3，直到遍历完整个模式串T。*/
 void GetNext(SString T, int next[]) {
     int i = 1, j = 0;
-    next[1] = 0;
+    next[1] = 0; // next[1]无脑写0
     while (i < T.length) {
         if (j == 0 || T.ch[i] == T.ch[j]) {
             ++i;
@@ -129,6 +140,7 @@ void GetNext(SString T, int next[]) {
             j = next[j];
         }
     }
+    next[i + 1] = -1; // 给最后一位一个标识符表示结束
 }
 
 void GetNextVal(SString T, int nextval[]) {
@@ -146,6 +158,7 @@ void GetNextVal(SString T, int nextval[]) {
             j = nextval[j];
         }
     }
+    nextval[i + 1] = -1; // 给最后一位一个标识符表示结束
 }
 
 int Index_KMP(SString S, SString T, int next[]) {
@@ -164,17 +177,30 @@ int Index_KMP(SString S, SString T, int next[]) {
         return 0;
 }
 
-void PrintString(SString S){
+void PrintString(SString S) {
     for (int i = 1; i <= S.length; i++) {
-        printf("%c",S.ch[i]);
+        printf("%c", S.ch[i]);
     }
 }
 
-void text(){
-    char *chars = "avaskdhaksf";
+void text() {
+    int next[255];
+    SString T;
+    StringInit(T);
+    char* chars = "abaabc";
+    StringAssign(T,chars);
+    PrintString(T);
+    printf("\n");
+    GetNext(T, next);
+    for (int i = 1; next[i] !=-1 ; i++) {
+        printf("%d",next[i]);
+    }
+
     SString S;
     StringInit(S);
-    StringAssign(S, chars);
-    PrintString(S);
+    char* chars1 = "abaabaabcabaabc";
+    StringAssign(S,chars1);
+    printf("\n%d",Index_KMP(S,T,next));
 }
+
 #endif //DATASTRUCTURE_SSTRING_H
