@@ -4,7 +4,8 @@
 //#include "queue/SequenceQueue.h"
 //#include "queue/LinkQueueWithHead.h"
 //#include "stack/InfixToPostfix.h"
-#include "string/SString.h"
+//#include "string/SString.h"
+#include "sort/RadixSort.h"
 
 int main() {
     system("chcp 65001");
@@ -20,7 +21,25 @@ int main() {
 //    InteractiveMenu4LinkQueue();
 
 //    InfixToPostfixMain();
-    text();
+//    text();
+
+
+    int arr[] = {170, 45, 75, 90, 802, 24, 2, 66};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Original array: \n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    radixSort(arr, n);
+
+    printf("Sorted array: \n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
 
     return 0;
 }
